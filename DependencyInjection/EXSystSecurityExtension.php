@@ -23,6 +23,16 @@ class EXSystSecurityExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('totp.yml');
+
+        $this->registerTOTPConfiguration($config['totp'], $container, $loader);
+    }
+
+    private function registerTOTPConfiguration($config, ContainerBuilder $container, Loader\YamlFileLoader $loader) {
+        if($config['enabled']) {
+            $loader->load('totp.yml');
+            $definition = $container->getDefinition('ex_syst.security.totp_manager');
+            $definition->replaceArgument(0, $config['stamp_length']);
+            $definition->replaceArgument(1, $config['validation_window']);
+        }
     }
 }

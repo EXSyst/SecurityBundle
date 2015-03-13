@@ -25,7 +25,15 @@ class Configuration implements ConfigurationInterface
             ->arrayNode('totp')
                 ->canBeDisabled()
                 ->children()
-                    ->integerNode('stamp_length')->defaultValue(30)->end()
+                    ->integerNode('stamp_length')
+                        ->defaultValue(30)
+                        ->validate()
+                            ->ifTrue(function ($v) {
+                                return empty($v) or $v < 0;
+                            })
+                            ->thenInvalid('The stamp length must be greater than 0 and positive')
+                        ->end()
+                    ->end()
                     ->integerNode('validation_window')->defaultValue(1)->end()
                 ->end()
         ->end();

@@ -4,3 +4,4 @@ parameters:
 services:
     ex_syst.security.totp_manager:
         class: %ex_syst.security.totp_manager.class%
+        arguments: [ null, null ]
