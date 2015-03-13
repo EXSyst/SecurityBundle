@@ -25,8 +25,8 @@ class Configuration implements ConfigurationInterface
             ->arrayNode('totp')
                 ->canBeDisabled()
                 ->children()
-                    ->integerNode('stamp_length')->default(30)->end()
-                    ->integerNode('validation_window')->default(1)->end()
+                    ->integerNode('stamp_length')->defaultValue(30)->end()
+                    ->integerNode('validation_window')->defaultValue(1)->end()
                 ->end()
         ->end();
 
