@@ -20,9 +20,15 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('ex_syst_security');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+        ->children()
+            ->arrayNode('totp')
+                ->canBeEnabled()
+                ->children()
+                    ->integerNode('stamp_length')->end()
+                    ->integerNode('validation_window')->end()
+                ->end()
+        ->end();
 
         return $treeBuilder;
     }

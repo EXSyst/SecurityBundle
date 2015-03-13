@@ -1,0 +1,6 @@
+parameters:
+    ex_syst.security.totp_manager.class: EXSyst\Component\Security\Totp
+
+services:
+    ex_syst.security.totp_manager:
+        class: %ex_syst.security.totp_manager.class%
