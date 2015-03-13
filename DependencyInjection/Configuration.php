@@ -23,10 +23,10 @@ class Configuration implements ConfigurationInterface
         $rootNode
         ->children()
             ->arrayNode('totp')
-                ->canBeEnabled()
+                ->canBeDisabled()
                 ->children()
-                    ->integerNode('stamp_length')->end()
-                    ->integerNode('validation_window')->end()
+                    ->integerNode('stamp_length')->default(30)->end()
+                    ->integerNode('validation_window')->default(1)->end()
                 ->end()
         ->end();
 
