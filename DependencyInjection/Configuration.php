@@ -2,6 +2,7 @@
 
 namespace EXSyst\Bundle\SecurityBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -18,8 +19,16 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('ex_syst_security');
+        $rootNode = $treeBuilder->root('exsyst.security');
 
+        $this->addTOTPSection($rootNode);
+
+        return $treeBuilder;
+    }
+
+
+    private function addTOTPSection(ArrayNodeDefinition $rootNode)
+    {
         $rootNode
         ->children()
             ->arrayNode('totp')
@@ -37,7 +46,5 @@ class Configuration implements ConfigurationInterface
                     ->integerNode('validation_window')->defaultValue(1)->end()
                 ->end()
         ->end();
-
-        return $treeBuilder;
     }
 }
