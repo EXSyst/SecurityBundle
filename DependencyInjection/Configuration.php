@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('exsyst.security');
+        $rootNode = $treeBuilder->root('exsyst_security');
 
         $this->addTOTPSection($rootNode);
 
