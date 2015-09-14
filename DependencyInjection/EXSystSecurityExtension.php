@@ -2,20 +2,20 @@
 
 namespace EXSyst\Bundle\SecurityBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
- * This is the class that loads and manages your bundle configuration
+ * This is the class that loads and manages your bundle configuration.
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
 class EXSystSecurityExtension extends Extension
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -27,8 +27,9 @@ class EXSystSecurityExtension extends Extension
         $this->registerTOTPConfiguration($config['totp'], $container, $loader);
     }
 
-    private function registerTOTPConfiguration($config, ContainerBuilder $container, Loader\YamlFileLoader $loader) {
-        if($config['enabled']) {
+    private function registerTOTPConfiguration($config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
+    {
+        if ($config['enabled']) {
             $loader->load('totp.yml');
             $definition = $container->getDefinition('ex_syst.security.totp_manager');
             $definition->replaceArgument(0, $config['stamp_length']);

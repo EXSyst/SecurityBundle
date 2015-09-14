@@ -1,16 +1,20 @@
 <?php
+
 namespace EXSyst\Bundle\SecurityBundle\TOTP;
 
 interface TOTPAuthenticatableInterface
 {
-	public function getTOTPSecretKey();
+    public function getTOTPSecretKey();
 
-	public function getTOTPLastTrialStamp();
-	public function setTOTPLastTrialStamp($stamp);
+    public function getTOTPLastTrialStamp();
 
-	public function getTOTPLastSuccessStamp();
-	public function setTOTPLastSuccessStamp($stamp);
+    public function setTOTPLastTrialStamp($stamp);
 
-	public function getTOTPTrialCount();
-	public function setTOTPTrialCount($count);
+    public function getTOTPLastSuccessStamp();
+
+    public function setTOTPLastSuccessStamp($stamp);
+
+    public function getTOTPTrialCount();
+
+    public function setTOTPTrialCount($count);
 }
