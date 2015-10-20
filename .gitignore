@@ -1,6 +1,3 @@
-# Managed by Composer
 /vendor/*
 composer.lock
-
-# Composer PHAR
-/composer.phar
+.php_cs.cache
